@@ -1,0 +1,429 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+    --blue: #4682B4;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --blue2: #50394c;
+    --size: 300px;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    /*border: 1px solid red;*/
+}
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.navigation {
+    position: fixed;
+    width: 225px;
+    height: 100%;
+    background: var(--blue);
+    border-left: 10px solid var(--blue);
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.navigation.active {
+    width: 75px;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+    background: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+    margin-top: 15px;
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+    color: var(--blue);
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+    font-size: 1.7em;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 8px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
+
+/*curve outside*/
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--white);
+    pointer-events: none;
+}
+
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+}
+
+/* main */
+.main {
+    position: absolute;
+    width: calc(100% - 225px);
+    left: 225px;
+    top: 15px;
+    /* 80px yerine istediğiniz bir değeri kullanabilirsiniz */
+    min-height: calc(100vh - 80px);
+    /* Kalan alanın 80px azaltılması */
+    background: var(--white);
+    transition: 0.5s;
+}
+
+.main.active {
+    width: calc(100% - 75px);
+    left: 75px;
+}
+
+.topbar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 5px solid var(--blue);
+    /* Üst kısma ince bir çizgi ekler */
+    padding-bottom: 10px;
+    /* Opsiyonel: Çizginin altındaki boşluğu ayarlar */
+}
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.digitalClock {
+    display: flex;
+    /* Yatayda hizalamak için flex özelliğini ekleyin */
+    justify-content: center;
+    /* İçerikleri yatayda ortalamak için */
+    align-items: center;
+    /* İçerikleri dikeyde ortalamak için (opsiyonel) */
+    position: relative;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--black1);
+}
+
+.user {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+
+.cardBox .card {
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+}
+
+.cardBox .card:hover {
+    transform: translateY(-5px);
+    border-radius: 20px;
+    /* Kartın yukarı doğru kaymasını sağlar */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    /* Yükseltilmiş gölge efekti */
+}
+
+.cardBox .card .cardName {
+    font-size: 1rem;
+    color: var(--black1);
+}
+
+.card .iconBx ion-icon {
+    font-size: 1.5rem;
+    /* İkonun boyutunu 24 piksel olarak ayarlar */
+    --ionicon-stroke-width: 30px;
+    /* İkonun kalınlığını 2 piksel olarak ayarlar */
+    color: var(--blue2);
+}
+
+.cardBox .card .studentNumber {
+    display: flex;
+    /* Yatayda hizalamak için flex özelliğini ekleyin */
+    margin-top: 5px;
+    justify-content: center;
+    /* İçerikleri yatayda ortalamak için */
+    align-items: center;
+    /* İçerikleri dikeyde ortalamak için (opsiyonel) */
+    position: relative;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--black1);
+}
+
+.cardBox .card .dailyDate {
+    display: flex;
+    /* Yatayda hizalamak için flex özelliğini ekleyin */
+    justify-content: center;
+    /* İçerikleri yatayda ortalamak için */
+    align-items: center;
+    /* İçerikleri dikeyde ortalamak için (opsiyonel) */
+    margin-top: 5px;
+    position: relative;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--black1);
+}
+
+.cardBox .card .lessonTitle {
+    display: flex;
+    /* Yatayda hizalamak için flex özelliğini ekleyin */
+    justify-content: center;
+    /* İçerikleri yatayda ortalamak için */
+    align-items: center;
+    /* İçerikleri dikeyde ortalamak için (opsiyonel) */
+    margin-top: 5px;
+    position: relative;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--black1);
+}
+
+/* Tablet boyutları için medya sorgusu */
+@media (max-width: 991px) {
+    .navigation {
+        left: -300px;
+    }
+
+    .navigation.active {
+        width: 300px;
+        left: 0;
+    }
+
+    .main {
+        width: 100%;
+        left: 0;
+    }
+
+    .main.active {
+        left: 300px;
+    }
+
+    .cardBox {
+        grid-template-columns: repeat(2,1fr);
+        /* Sadece bir sütun olarak düzenleme */
+    }
+}
+
+@media (max-width: 768px) {
+    .cardBox {
+        grid-template-columns: 1fr;
+        /* Sadece bir sütun olarak düzenleme */
+    }
+}
+
+.containerNotes {
+    background: #2f363e;
+    position: relative;
+    top: 35px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 60px;
+    border-radius: 13px;
+}
+
+.containerNotes h1 {
+    color: var(--white);
+    font-family: 'Handlee', cursive;
+
+}
+
+.containerNotes .notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerNotes .notes .note {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    padding: 40px;
+    overflow: auto;
+    word-wrap: break-word;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.containerNotes .notes .note::before {
+    content: 'Double Click to Remove This Note';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85em;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.containerNotes .notes .note:hover::before {
+    opacity: 1;
+}
+
+#create {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    background-color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+#create i {
+    position: absolute;
+    color: #fff;
+}
+
+.createBox {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    z-index: 1000;
+    display: none;
+}
+
+.createBox textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--size);
+    height: var(--size);
+    padding: 40px;
+    outline: none;
+    font-size: 0.2em;
+    resize: none;
+}
+
+.details h3 {
+    font-family: 'Handlee', cursive;
+    user-select: none;
+    font-size: 1.45em;
+}
