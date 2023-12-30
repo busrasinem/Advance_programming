@@ -516,8 +516,7 @@ body {
     gap: 30px;
     height: 100%;
     border-radius: 20px;
-    margin: auto;
-       border: 2px solid red;
+    border: 2px solid red;
     /* Bu satırı ekleyin */
 }
 
@@ -699,7 +698,7 @@ body {
         /* Normal boşluklarla yazıları sarma */
         width: 100%;
         /* Kutuların genişliğini ayarla */
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         /* İstenirse kutular arasına bir boşluk bırakabilirsiniz */
     }
 
