@@ -6,9 +6,11 @@
     <title>Teacher Panel</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" sizes="192x192" href="https://busrasinem.github.io/Advance_programming/rocket.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -69,6 +71,14 @@
                 </div>
             </div>
 
+            <!-- IntroPage -->
+            <div class="IntroPage">
+                <img src="campus.jpg" class="full-page-image">
+                <div class="overlay" onclick="redirectToLink()"></div>
+            </div>
+
+
+            <!-- DashboardPage -->
             <div class="DashboardPage" style="padding: 3%;">
                 <!-- cards -->
                 <div class="cardBox">
@@ -88,6 +98,15 @@
                         </div>
                         <div class="iconBx">
                             <ion-icon name="man-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="cardName">Meeting Plan</div>
+                            <div class="meetingPlan">13:13 Student Interview</div>
+                        </div>
+                        <div class="iconBx">
+                            <ion-icon name="logo-skype"></ion-icon>
                         </div>
                     </div>
                     <div class="card">
@@ -117,21 +136,128 @@
                     </div>
                 </div>
             </div>
-            <div class="StudentPage">
 
+            <!-- StudentPage -->
+            <div class="StudentPage" style="padding: 3%;">
+                <div class="containerTable">
+                    <div class="inputBox">
+                        <input type="text" class="nameSurname" placeholder="Name-Surname">
+                        <input type="email" class="email" placeholder="email@stu.fsm">
+                        <input type="tel" class="phone" placeholder="+90xxxxxxxxxx">
+                        <input type="number" class="q1Grade" placeholder="Q1 Grade" max="100" min="0"
+                            oninput="validateGrade(this)">
+                        <input type="number" class="midtermGrade" placeholder="Midterm Grade" max="100" min="0"
+                            oninput="validateGrade(this)">
+                        <input type="number" class="q2Grade" placeholder="Q2 Grade" max="100"
+                            oninput="validateGrade(this)">
+                        <input type="number" class="projectGrade" placeholder="Project Grade" max="100" min="0"
+                            oninput="validateGrade(this)">
+                        <input type="number" class="finalGrade" placeholder="Final Grade" max="100" min="0"
+                            oninput="validateGrade(this)">
+                        <button class="addButton" onclick="addDataToTable()">Add Data</button>
+                    </div>
+                    <div class="tableBox">
+                        <table class="_table">
+                            <thead>
+                                <tr>
+                                    <th>Name-Surname</th>
+                                    <th>E-mail</th>
+                                    <th>Phone</th>
+                                    <th>Q1</th>
+                                    <th>Midterm</th>
+                                    <th>Q2</th>
+                                    <th>Project</th>
+                                    <th>Final</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_body">
+                                <!-- Buraya veriler dinamik olarak eklenecek -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AnalysisPage -->
+            <div class="AnalysisPage">
+                <div class="graphBox">
+                    <div class="box">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="box">
+                        <canvas id="myChart_1"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ProfilePage -->
+            <div class="ProfilePage">
+                <div class="person-card">
+                    <div class="person-info">
+                        <img src="user.jpeg" alt="Profile Picture">
+                        <h2></h2>
+                        <hr style="width: 50%;">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <button onclick="openEditForm()">Bilgilerimi Güncelle</button>
+                    </div>
+                    <div class="edit-form-container">
+                        <form id="editForm">
+                            <label for="name">Ad Soyad:</label><br>
+                            <input type="text" id="name" name="name" required><br>
+
+                            <label for="occupation">Meslek:</label><br>
+                            <input type="text" id="occupation" name="occupation"><br>
+
+                            <label for="email">Email:</label><br>
+                            <input type="email" id="email" name="email" required><br>
+
+                            <label for="phone">Telefon:</label><br>
+                            <input type="tel" id="phone" name="phone"><br>
+
+                            <input type="submit" value="Güncelle">
+                            <button type="button" onclick="closeEditForm()">Vazgeç</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Harita Container -->
+                <div class="mapContainer">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <!-- SignOutPage -->
+            <div class="SignOutPage">
+                <div class="imgBox">
+                    <img id="gifImage" src="animasyon.gif" alt="Example GIF">
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
 
     <!-- .........Link to Pages......... -->
     <script>
+
+        openMap()
+
         // Navigation seçimlerini al
         let navigationLinks = document.querySelectorAll('.navigation li');
 
         // DashboardPage seçili durumu
         let isDashboardSelected = false;
+        let isStudentSelected = false;
+        let isAnalysisSelected = false;
+        let isProfileSelected = false;
+        let isSignOutSelected = false;
 
         // Seçili olan linkleri kontrol et
         navigationLinks.forEach(link => {
@@ -147,11 +273,55 @@
                 // Eğer Dashboard seçildiyse, DashboardPage'i göster
                 if (link.querySelector('.title').textContent === 'Dashboard') {
                     document.querySelector('.DashboardPage').style.display = 'block';
+                    document.querySelector('.IntroPage').style.display = 'none';
                     isDashboardSelected = true;
                 } else {
                     // Dashboard seçili değilse, DashboardPage'i gizle
                     document.querySelector('.DashboardPage').style.display = 'none';
                     isDashboardSelected = false;
+                }
+
+                // Eğer Student seçildiyse, StudentPage'i göster
+                if (link.querySelector('.title').textContent === 'Students') {
+                    document.querySelector('.StudentPage').style.display = 'block';
+                    document.querySelector('.IntroPage').style.display = 'none';
+                    isStudentSelected = true;
+                } else {
+                    // Student seçili değilse, StudentPage'i gizle
+                    document.querySelector('.StudentPage').style.display = 'none';
+                    isStudentSelected = false;
+                }
+
+                // Eğer Analysis seçildiyse, AnalysisPage'i göster
+                if (link.querySelector('.title').textContent === 'Analysis') {
+                    document.querySelector('.AnalysisPage').style.display = 'block';
+                    document.querySelector('.IntroPage').style.display = 'none';
+                    isAnalysisSelected = true;
+                } else {
+                    // Analysis seçili değilse, AnalysisPage'i gizle
+                    document.querySelector('.AnalysisPage').style.display = 'none';
+                    isAnalysisSelected = false;
+                }
+
+                // Eğer Analysis seçildiyse, ProfilePage'i göster
+                if (link.querySelector('.title').textContent === 'Profile') {
+                    document.querySelector('.ProfilePage').style.display = 'block';
+                    document.querySelector('.IntroPage').style.display = 'none';
+                    isProfileSelected = true;
+                } else {
+                    // Analysis seçili değilse, ProfilePage'i gizle
+                    document.querySelector('.ProfilePage').style.display = 'none';
+                    isProfileSelected = false;
+                }
+                // Eğer Analysis seçildiyse, SignOutPage'i göster
+                if (link.querySelector('.title').textContent === 'Sign Out') {
+                    document.querySelector('.SignOutPage').style.display = 'block';
+                    document.querySelector('.IntroPage').style.display = 'none';
+                    isSignOutSelected = true;
+                } else {
+                    // Analysis seçili değilse, ProfilePage'i gizle
+                    document.querySelector('.SignOutPage').style.display = 'none';
+                    isSignOutSelected = false;
                 }
             });
         });
@@ -162,6 +332,36 @@
         } else {
             document.querySelector('.DashboardPage').style.display = 'none';
         }
+
+        // Sayfa yüklendiğinde StudentPage'in başlangıç durumunu ayarla
+        if (isStudentSelected) {
+            document.querySelector('.StudentPage').style.display = 'block';
+        } else {
+            document.querySelector('.StudentPage').style.display = 'none';
+        }
+
+        // Sayfa yüklendiğinde AnalysisPage'in başlangıç durumunu ayarla
+        if (isAnalysisSelected) {
+            document.querySelector('.AnalysisPage').style.display = 'block';
+        } else {
+            document.querySelector('.AnalysisPage').style.display = 'none';
+        }
+
+        // Sayfa yüklendiğinde ProfilePage'in başlangıç durumunu ayarla
+        if (isProfileSelected) {
+            document.querySelector('.ProfilePage').style.display = 'block';
+        } else {
+            document.querySelector('.ProfilePage').style.display = 'none';
+        }
+
+        // Sayfa yüklendiğinde ProfilePage'in başlangıç durumunu ayarla
+        if (isSignOutSelected) {
+            document.querySelector('.SignOutPage').style.display = 'block';
+        } else {
+            document.querySelector('.SignOutPage').style.display = 'none';
+        }
+
+        placeOnChart();
     </script>
 
     <!-- .........Navigation......... -->
@@ -186,6 +386,15 @@
         }
         list.forEach((item) =>
             item.addEventListener('mouseover', activeLink));
+    </script>
+
+    <script>
+        function redirectToLink() {
+            // Yönlendirilecek URL
+            const link = "https://bm.fsm.edu.tr/";
+            // Yönlendirme işlemi
+            window.location.href = link;
+        }
     </script>
 
     <!-- .........Daily Date Box......... -->
@@ -305,7 +514,10 @@
 
             notes.appendChild(div);
         }
+
+
     </script>
+
 </body>
 
 </html>

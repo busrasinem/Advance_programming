@@ -196,7 +196,7 @@ body {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .user img {
@@ -214,7 +214,7 @@ body {
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 30px;
 }
 
@@ -243,9 +243,9 @@ body {
 }
 
 .card .iconBx ion-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
     /* İkonun boyutunu 24 piksel olarak ayarlar */
-    --ionicon-stroke-width: 30px;
+    --ionicon-stroke-width: 25px;
     /* İkonun kalınlığını 2 piksel olarak ayarlar */
     color: var(--blue2);
 }
@@ -253,7 +253,7 @@ body {
 .cardBox .card .studentNumber {
     display: flex;
     /* Yatayda hizalamak için flex özelliğini ekleyin */
-    margin-top: 5px;
+    margin-top: 10px;
     justify-content: center;
     /* İçerikleri yatayda ortalamak için */
     align-items: center;
@@ -271,7 +271,21 @@ body {
     /* İçerikleri yatayda ortalamak için */
     align-items: center;
     /* İçerikleri dikeyde ortalamak için (opsiyonel) */
-    margin-top: 5px;
+    margin-top: 10px;
+    position: relative;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--black1);
+}
+
+.cardBox .card .meetingPlan {
+    display: flex;
+    /* Yatayda hizalamak için flex özelliğini ekleyin */
+    justify-content: center;
+    /* İçerikleri yatayda ortalamak için */
+    align-items: center;
+    /* İçerikleri dikeyde ortalamak için (opsiyonel) */
+    margin-top: 10px;
     position: relative;
     font-weight: 500;
     font-size: 1rem;
@@ -285,44 +299,11 @@ body {
     /* İçerikleri yatayda ortalamak için */
     align-items: center;
     /* İçerikleri dikeyde ortalamak için (opsiyonel) */
-    margin-top: 5px;
+    margin-top: 10px;
     position: relative;
     font-weight: 500;
     font-size: 1rem;
     color: var(--black1);
-}
-
-/* Tablet boyutları için medya sorgusu */
-@media (max-width: 991px) {
-    .navigation {
-        left: -300px;
-    }
-
-    .navigation.active {
-        width: 300px;
-        left: 0;
-    }
-
-    .main {
-        width: 100%;
-        left: 0;
-    }
-
-    .main.active {
-        left: 300px;
-    }
-
-    .cardBox {
-        grid-template-columns: repeat(2,1fr);
-        /* Sadece bir sütun olarak düzenleme */
-    }
-}
-
-@media (max-width: 768px) {
-    .cardBox {
-        grid-template-columns: 1fr;
-        /* Sadece bir sütun olarak düzenleme */
-    }
 }
 
 .containerNotes {
@@ -426,4 +407,338 @@ body {
     font-family: 'Handlee', cursive;
     user-select: none;
     font-size: 1.45em;
+}
+
+.containerTable {
+    /*max-width: 900px;*/
+    width: 100%;
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow-x: auto;
+    /*border: 1px solid red;*/
+    gap: 20px;
+}
+
+.inputBox,
+.tableBox {
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 2px 20px #0001, 0 1px 6px #0001;
+    border-radius: 10px;
+    overflow-x: auto;
+    /*border: 1px solid red;*/
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+}
+
+.inputBox {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.addButton {
+    height: 40px;
+    background-color: goldenrod;
+    color: #fff;
+}
+
+.addButton:hover {
+    background-color: darkgoldenrod;
+}
+
+.inputBox input {
+    height: 40px;
+    /* Örnek olarak 40 piksel yükseklik */
+}
+
+._table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+._table :is(th, td) {
+    border: 2px solid #0002;
+    padding: 8px 10px;
+}
+
+/* 4. sütundan 9. sütuna kadar olan hücrelerin içeriğini ortala */
+._table td:nth-child(n+4):nth-child(-n+9),
+._table th:nth-child(n+4):nth-child(-n+9) {
+    text-align: center;
+}
+
+.danger {
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 1px;
+    cursor: pointer;
+}
+
+.edit {
+    background-color: green;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 1px;
+    cursor: pointer;
+}
+
+.edit:hover {
+    background-color: darkgreen;
+}
+
+.danger:hover {
+    background-color: darkred;
+}
+
+.AnalysisPage {
+    /* Yatayda ve dikeyde merkezde olacak şekilde ortalanma */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+}
+
+.AnalysisPage .graphBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    padding: 2%;
+    gap: 30px;
+    height: 100%;
+    border-radius: 20px;
+    margin: auto;
+    /* Bu satırı ekleyin */
+}
+
+.AnalysisPage .graphBox .box {
+    width: 100%;
+    max-height: 800px;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    border: 2px solid #ccc;
+}
+
+.ProfilePage {
+    width: 100%;
+    height: 100vh;
+    /* Ekran yüksekliği kadar genişlik */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4%;
+}
+
+.ProfilePage .person-card {
+    display: flex;
+    flex-wrap: wrap;
+    /* Elemanlar sıralandığında, sığmazlarsa alt satıra geçmesini sağlar */
+    justify-content: center;
+    /* İçeriklerin merkezi hizalanması */
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    height: 65%;
+}
+
+.ProfilePage .person-info {
+    flex: 1;
+    /* Eşit genişlik almasını sağlar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.person-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.person-info h2 {
+    margin: 10px 0;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.person-info p {
+    margin: 5px 0;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.edit-form-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    /* Eşit genişlik almasını sağlar */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 3%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.edit-form-container input {
+    margin-bottom: 10px;
+}
+
+.ProfilePage .mapContainer {
+    height: 50%;
+    width: 100%;
+    margin-top: 4%;
+}
+
+.mapContainer #map {
+    height: 90%;
+    width: 100%;
+    border: 2px solid #ccc;
+    cursor: crosshair;
+    border-radius: 10px;
+}
+
+.IntroPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-page-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    width: 70%;
+    height: 90%;
+    background-image: url('fsmvu_logo.jpg');
+    background-size: cover;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.SignOutPage {
+    /* Yatayda ve dikeyde merkezde olacak şekilde ortalanma */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.SignOutPage .imgBox {
+    position: relative;
+    /* Set a fixed width and height or adjust as needed */
+    width: 450px;
+    /* For example */
+    height: 450px;
+    /* For example */
+    margin: auto;
+}
+
+/* Tablet boyutları için medya sorgusu */
+@media (max-width: 991px) {
+    .navigation {
+        left: -300px;
+    }
+
+    .navigation.active {
+        width: 300px;
+        left: 0;
+    }
+
+    .main {
+        width: 100%;
+        left: 0;
+    }
+
+    .main.active {
+        left: 300px;
+    }
+
+    .cardBox {
+        grid-template-columns: repeat(2, 1fr);
+        /* Sadece bir sütun olarak düzenleme */
+    }
+
+    .graphBox {
+        overflow-x: auto;
+        /* Yatay kaydırma çubuğunu etkinleştir */
+        overflow-y: hidden;
+        /* Dikey kaydırmayı gizle */
+        white-space: nowrap;
+    }
+
+    .graphBox .box {
+        display: inline-block;
+        /* Kutuları yan yana hizalamak için inline-block kullan */
+        white-space: normal;
+        /* Normal boşluklarla yazıları sarma */
+        width: 100%;
+        /* Kutuların genişliğini ayarla */
+        margin-bottom: 20px;
+        /* İstenirse kutular arasına bir boşluk bırakabilirsiniz */
+    }
+
+    .addButton {
+        height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cardBox {
+        grid-template-columns: repeat(2, 1fr);
+        /* Sadece bir sütun olarak düzenleme */
+    }
+
+    .cardBox .card .studentNumber {
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
+
+    .cardBox .card .dailyDate {
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .cardBox .card .meetingPlan {
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .cardBox .card .lessonTitle {
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .addButton {
+        height: 40px;
+    }
+
+    .SignOutPage .imgBox {
+        width: 450px;
+        height: 450px;
+    }
 }
