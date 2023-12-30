@@ -517,6 +517,7 @@ body {
     height: 100%;
     border-radius: 20px;
     margin: auto;
+       border: 2px solid red;
     /* Bu satırı ekleyin */
 }
 
