@@ -73,10 +73,14 @@
 
             <!-- IntroPage -->
             <div class="IntroPage">
+                <div class="content">
+                    <p>Welcome to the Class Management System</p>
+                    <a href="https://bm.fsm.edu.tr/">
+                        <img src="fsmvu_logo.jpg" alt="logo_image" class="overlay-image">
+                    </a>
+                </div>
                 <img src="campus.jpg" class="full-page-image">
-                <div class="overlay" onclick="redirectToLink()"></div>
             </div>
-
 
             <!-- DashboardPage -->
             <div class="DashboardPage" style="padding: 3%;">
@@ -182,10 +186,10 @@
             <!-- AnalysisPage -->
             <div class="AnalysisPage">
                 <div class="graphBox">
-                    <div class="box">
+                    <div class="box-bar">
                         <canvas id="myChart"></canvas>
                     </div>
-                    <div class="box">
+                    <div class="box-pie">
                         <canvas id="myChart_1"></canvas>
                     </div>
                 </div>
@@ -231,8 +235,16 @@
 
             <!-- SignOutPage -->
             <div class="SignOutPage">
-                <div class="imgBox">
-                    <img id="gifImage" src="animasyon.gif" alt="Example GIF">
+                <div class="signOutCard">
+                    <p>References:</p>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=nUUsUAPEjFc&ab_channel=OnlineTutorials">Navigator</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=Uk1cTgQVP9g&ab_channel=OnlineTutorials">Sticky Notes</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=KnKMGCSPj3Y&ab_channel=1BestCsharpblog">Dynamic Table-1</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=57v07BP8_sM&ab_channel=LearnWithMuhib-LWM-Bangladesh">Dynamic Table-2</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=q3zc1ph5fvg&ab_channel=OnlineTutorials">Charts</a></li>
+                        <li><a href="https://leafletjs.com/">Map</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -247,7 +259,7 @@
     <!-- .........Link to Pages......... -->
     <script>
 
-        openMap()
+        //openMap()
 
         // Navigation seçimlerini al
         let navigationLinks = document.querySelectorAll('.navigation li');
@@ -386,15 +398,6 @@
         }
         list.forEach((item) =>
             item.addEventListener('mouseover', activeLink));
-    </script>
-
-    <script>
-        function redirectToLink() {
-            // Yönlendirilecek URL
-            const link = "https://bm.fsm.edu.tr/";
-            // Yönlendirme işlemi
-            window.location.href = link;
-        }
     </script>
 
     <!-- .........Daily Date Box......... -->

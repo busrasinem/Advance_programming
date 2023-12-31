@@ -497,36 +497,34 @@ body {
 }
 
 .AnalysisPage {
-    /* Yatayda ve dikeyde merkezde olacak şekilde ortalanma */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2%;
+    padding: 3%;
     width: 100%;
-    height: 100%;
 }
 
-.AnalysisPage .graphBox {
+.graphBox {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 85%;
-    padding: 2%;
+    width: 100%;
+    padding: 4%;
+    border-radius: 10px;
     gap: 30px;
-    height: 100%;
-    border-radius: 20px;
-    margin: auto;
-    /* Bu satırı ekleyin */
+    background-color: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
+
 }
 
-.AnalysisPage .graphBox .box {
+.graphBox .box-bar,
+.box-pie {
     width: 100%;
-    max-height: 800px;
-    padding: 20px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.);
     border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
 }
 
 .ProfilePage {
@@ -549,7 +547,7 @@ body {
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
     height: 65%;
 }
 
@@ -593,7 +591,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 3%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 300px;
 }
 
@@ -616,9 +614,11 @@ body {
 }
 
 .IntroPage {
+    position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
+    opacity: 0.9;
     justify-content: center;
     align-items: center;
 }
@@ -629,33 +629,70 @@ body {
     object-fit: cover;
 }
 
-.overlay {
+.content {
+    top: 20%;
     position: absolute;
-    width: 70%;
-    height: 90%;
-    background-image: url('fsmvu_logo.jpg');
-    background-size: cover;
+    z-index: 20;
+    /* Metnin önde görünmesini sağlar */
+    text-align: center;
+    /* Metni ortalamak için */
+    color: white;
+    /* Metin rengi */
+    background-color: #222;
+    font-family: 'Handlee', cursive;
+    font-size: 24px;
+}
+
+.overlay-image {
+    display: flex;
+    position: absolute;
+    width: 250px;
+    height: 250px;
     opacity: 0.5;
     cursor: pointer;
+    z-index: 10;
+    left: 20%;
+    margin-top: 10%;
 }
 
 .SignOutPage {
-    /* Yatayda ve dikeyde merkezde olacak şekilde ortalanma */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    background-color: #f0f0f0;
+    /* Arka plan rengi - isteğinize göre değiştirilebilir */
+    position: relative;
 }
 
-.SignOutPage .imgBox {
-    position: relative;
-    /* Set a fixed width and height or adjust as needed */
-    width: 450px;
-    /* For example */
-    height: 450px;
-    /* For example */
-    margin: auto;
+.signOutCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    background-color: #f9f9f9;
+    font-size: 20px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.signOutCard p, a{
+    font-family: 'Handlee', cursive;
+    margin-bottom: 20px;
+}
+
+.signOutCard ul {
+    list-style-type:circle;
+    padding-left: 20px;
+    margin-top: 10px;
 }
 
 /* Tablet boyutları için medya sorgusu */
@@ -681,25 +718,6 @@ body {
     .cardBox {
         grid-template-columns: repeat(2, 1fr);
         /* Sadece bir sütun olarak düzenleme */
-    }
-
-    .graphBox {
-        overflow-x: auto;
-        /* Yatay kaydırma çubuğunu etkinleştir */
-        overflow-y: hidden;
-        /* Dikey kaydırmayı gizle */
-        white-space: nowrap;
-    }
-
-    .graphBox .box {
-        display: inline-block;
-        /* Kutuları yan yana hizalamak için inline-block kullan */
-        white-space: normal;
-        /* Normal boşluklarla yazıları sarma */
-        width: 100%;
-        /* Kutuların genişliğini ayarla */
-        margin-bottom: 20px;
-        /* İstenirse kutular arasına bir boşluk bırakabilirsiniz */
     }
 
     .addButton {
@@ -737,8 +755,7 @@ body {
         height: 40px;
     }
 
-    .SignOutPage .imgBox {
-        width: 450px;
-        height: 450px;
+    .SignOutPage {
+        font-size: 16px;
     }
 }
